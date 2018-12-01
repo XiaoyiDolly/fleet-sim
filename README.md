@@ -4,7 +4,7 @@
 Below you will find step-by-step instructions to set up the NYC taxi simulation using 2016-05 trips for training and 2016-06 trips for evaluation.
 ### 1. Download OSM Data
 ```commandline
-wget https://download.bbbike.org/osm/bbbike/NewYork/NewYork.osm.pb -P osrm
+wget https://download.bbbike.org/osm/bbbike/NewYork/NewYork.osm.pbf -P osrm
 ```
 
 ### 2. Preprocess OSM Data
