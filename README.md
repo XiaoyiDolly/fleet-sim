@@ -45,6 +45,21 @@ docker-compose run sim python src/preprocessing/snap_to_road.py ./data/trip_reco
 ```commandline
 docker-compose run --no-deps sim python src/preprocessing/create_db.py ./data/trip_records/mm_trips_2016-06.csv
 ```
+    Follwed below steps to upgrade docker-compose in ubuntu16.04
+
+    step1:
+
+    $which docker-compose
+    /usr/bin/docker-compose
+    step2:
+
+    $sudo rm /usr/bin/docker-compose
+    step3:
+
+    curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+    step4:
+
+    chmod +x /usr/bin/docker-compose
 
 ### 8. Prepare statistical demand profile using training dataset
 ```commandline
