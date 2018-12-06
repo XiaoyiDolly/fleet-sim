@@ -136,19 +136,19 @@ class FeatureConstructor(object):
 
     def construct_state_feature(self, t, f, l, M):
         x, y = l
-        state_feature = [m.mean() for m in M[:NUM_SUPPLY_DEMAND_MAPS]]
-        state_feature += [m[x, y] for m in M]
-        state_feature += [m[x, y] for m in self.d_entropy]
-        state_feature += self.construct_time_features(t) + self.construct_fingerprint_features(f)
-        return state_feature
+        state_feature = [m.mean() for m in M[:NUM_SUPPLY_DEMAND_MAPS]]   # 5
+        state_feature += [m[x, y] for m in M]                            # 20
+        state_feature += [m[x, y] for m in self.d_entropy]               # 3
+        state_feature += self.construct_time_features(t) + self.construct_fingerprint_features(f)   # 6
+        return state_feature                                             # 34
 
     def construct_action_features(self, t, l, M):
         actions = []
         action_features = []
 
-        for ax, ay in self.action_space_iter(*l):
+        for ax, ay in self.action_space_iter(*l):                 # <= 2 * 7 + 1 = 15
             a = (ax, ay)
-            feature = self.construct_action_feature(t, l, M, a)
+            feature = self.construct_action_feature(t, l, M, a)   # 24
             if feature is not None:
                 actions.append(a)
                 action_features.append(feature)
@@ -165,9 +165,9 @@ class FeatureConstructor(object):
         y_ = y + ay
         tt = self.get_triptime(x, y, ax, ay)
         if tt <= 1:
-            action_feature = [m[x_, y_] for m in M]
-            action_feature += [m[x_, y_] for m in self.d_entropy]
-            action_feature += [tt]
+            action_feature = [m[x_, y_] for m in M]                # 20
+            action_feature += [m[x_, y_] for m in self.d_entropy]  # 3
+            action_feature += [tt]                                 # 1
             # action_feature += self.construct_location_features((x_, y_)) + [tt]
             return action_feature
 
@@ -215,4 +215,3 @@ class FeatureConstructor(object):
     def get_current_fingerprint(self):
         f = self.fingerprint
         return f
-

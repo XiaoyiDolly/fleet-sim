@@ -35,7 +35,8 @@ flags.DEFINE_boolean('f', False, "")
 
 GAMMA = 0.98  # Discount Factor
 MAX_MOVE = 7
-NUM_SUPPLY_DEMAND_MAPS = 5
+NUM_SUPPLY_DEMAND_MAPS = 3
+NUM_AUX_MAPS = 11
 NUM_FEATURES = 7 + NUM_SUPPLY_DEMAND_MAPS * (1 + (FLAGS.n_diffusions + 1) * 2) + FLAGS.n_diffusions * 2 \
                + FLAGS.trip_diffusion * 4   # 58
 # state_features = 34
@@ -71,3 +72,7 @@ TARGET_UPDATE_INTERVAL = 50  # The frequency with which the target network is up
 LEARNING_RATE = 0.00025  # Learning rate used by RMSProp
 MOMENTUM = 0.95  # Momentum used by RMSProp
 MIN_GRAD = 0.01  # Constant added to the squared gradient in the denominator of the RMSProp update
+MAIN_LENGTH = 51
+MAIN_DEPTH = 3
+AUX_LENGTH = 15
+AUX_DEPTH = 11
